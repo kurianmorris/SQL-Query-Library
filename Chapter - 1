@@ -1,0 +1,66 @@
+
+-- Dvdrental Database
+
+-- 1) Write a SQL query to get the highest, lowest, total, and average replacement cost 
+-- of all the films whose release year is ‘2006’ in the “film” table.
+
+SELECT
+    MAX(replacement_cost), 
+    MIN(replacement_cost), 
+    SUM(replacement_cost), 
+    AVG(replacement_cost)
+FROM film
+WHERE release_year = 2006;
+
+-- 2) Write a SQL query to get the average rental rate and number of films 
+-- that have a rating of ‘NC-17’ in the “film” table.
+
+SELECT
+    AVG(rental_rate), 
+    COUNT(film_id)
+FROM film
+WHERE rating = 'NC-17';
+
+-- 3) Write a SQL query to get the “title”, “length”, and “rating” of all the films 
+-- from the “film” table with a “rental_rate” greater than or equal to $2.99 and 
+-- less than or equal to $4.99, and the “rental_duration” is 5. 
+-- Display the data with the highest film length at the top.
+
+SELECT
+    title, length, rating 
+FROM film
+WHERE rental_rate BETWEEN 2.99 AND 4.99 
+  AND rental_duration = 5 
+ORDER BY length DESC;
+
+-- 4) Write a SQL query to get the average replacement_cost and the number of films 
+-- from the “film” table that have the “rating” of ‘PG-13’ and “rental_rate” of $2.99 or more.
+
+SELECT
+    AVG(replacement_cost), 
+    COUNT(*)
+FROM film
+WHERE rating = 'PG-13' 
+  AND rental_rate >= 2.99;
+
+-- Northwind Database
+
+-- 5) Write a SQL query to get “customer_id”, “contact_name” and “country” for 
+-- the monthly lucky giveaways from the “customers” table. 
+-- The customers having names starting with the letter P and countries having 
+-- the second letter ‘e’ have been selected for this month’s giveaways.
+
+SELECT
+    customer_id,
+    contact_name, 
+    country
+FROM customers
+WHERE contact_name ILIKE 'P%' 
+  AND country LIKE '_e%';
+
+-- 6) Write a query to find all products whose names contain the word “choco” 
+-- in the “products” table.
+
+SELECT *
+FROM products
+WHERE product_name ILIKE '%choco%';
